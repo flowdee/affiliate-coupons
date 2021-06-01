@@ -7,33 +7,44 @@
  */
 
 // Exit if accessed directly
-if (!defined('ABSPATH')) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-if (!class_exists('Affcoups_Vendor')) {
+if ( ! class_exists( 'Affcoups_Vendor' ) ) {
 
-    class Affcoups_Vendor
-    {
-        // General
+    class Affcoups_Vendor {
+
+        /**
+         * @var mixed
+         */
         public $options;
 
-        // Variables
-        public $post; // WP_Post
+        /**
+         * @var WP_Post|int
+         */
+        public $post;
+
+        /**
+         * @var int
+         */
         public $id;
 
         /**
-         * Affcoups_Vendor constructor.
-         * @param $post WP_Post or Post ID
+         * Affcoups_Vendor constructor
+         *
+         * @param WP_Post|int Post or Post ID
          */
         public function __construct( $post ) {
+
+            $this->options = affcoups_get_options();
 
             if ( is_numeric( $post ) )
                 $post = get_post( $post );
 
-            $this->options = affcoups_get_options();
-
-            // Setup
-            $this->post = $post;
-            $this->id = $post->ID;
+            // Setup vendor
+            if ( $post instanceof WP_Post ) {
+                $this->post = $post;
+                $this->id = $post->ID;
+            }
         }
 
         /**

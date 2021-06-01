@@ -7,35 +7,54 @@
  */
 
 // Exit if accessed directly
-if (!defined('ABSPATH')) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-if (!class_exists('Affcoups_Coupon')) {
+if ( ! class_exists( 'Affcoups_Coupon' ) ) {
 
-    class Affcoups_Coupon
-    {
-        // General
+    class Affcoups_Coupon {
+
+        /**
+         * @var mixed
+         */
         public $options;
 
-        // Variables
-        public $post; // WP_Post
+        /**
+         * @var WP_Post|int
+         */
+        public $post;
+
+        /**
+         * @var int
+         */
         public $id;
+
+        /**
+         * @var mixed
+         */
         public $vendor_id = 0;
+
+        /**
+         * @var Affcoups_Vendor
+         */
         public $vendor;
 
         /**
-         * Affcoups_Coupon constructor.
-         * @param WP_Post or int $post
+         * Affcoups_Coupon constructor
+         *
+         * @param WP_Post|int Post or Post ID
          */
         public function __construct( $post ) {
+
+            $this->options = affcoups_get_options();
 
             if ( is_numeric( $post ) )
                 $post = get_post( $post );
 
-            $this->options = affcoups_get_options();
-
             // Setup coupon
-            $this->post = $post;
-            $this->id = $post->ID;
+            if ( $post instanceof WP_Post ) {
+                $this->post = $post;
+                $this->id = $post->ID;
+            }
 
             // Setup vendor
             $vendor_id = get_post_meta( $post->ID, AFFCOUPS_PREFIX . 'coupon_vendor', true );
