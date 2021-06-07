@@ -34,6 +34,8 @@ All of these key features are **available in our free version of Affiliate Coupo
 - **Click-to-reveal discount codes** - This is the big one. With the Pro version of Affiliate Coupons, you can increase your affiliate earnings as soon as visitors click to reveal their discount coupons.
 - **Discover key coupon stats** - Keep track of your coupon plugin success by tracking view, copy and click statistics for all campaigns.
 - **Advanced styles and templates** - Experiment with more complex styles and templates that add extra revenue potential to your coupon page. You can even create your own custom templates.
+- **Powerful & comprehensive search & filter function** - That's powerful! Clever filtering and searching allows you to view coupons individually and quickly.
+- **Comfortable pagination** - Allows you to display a variety of coupons spread over multiple pages.
 - **Highlight single coupons** - Make a show and dance of your best value coupon. With Pro, you can do more than just placing it at the top of your page.
 - **Widget for popular coupons** - Get an entire widget devoted to showcasing the most popular affiliate coupons on your website.
 - **Smart event tracking** - Google and Piwik do the hard work as they track how your customers interact with your coupons.

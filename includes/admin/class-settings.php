@@ -293,9 +293,9 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
 		function section_quickstart_render() {
 
 			?>
-            <p>
-                <strong><?php esc_html_e( 'First Steps', 'affiliate-coupons' ); ?></strong>
-            </p>
+            <h3 style="margin-top: 2em">
+                <?php esc_html_e( 'First Steps', 'affiliate-coupons' ); ?>
+            </h3>
             <ol>
                 <li><?php esc_html_e( 'Create vendors', 'affiliate-coupons' ); ?></li>
                 <li><?php esc_html_e( 'Create coupons', 'affiliate-coupons' ); ?></li>
@@ -304,14 +304,40 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
                 <li><?php esc_html_e( 'Display coupons inside your posts/pages by using shortcodes', 'affiliate-coupons' ); ?></li>
             </ol>
 
-            <p>
+            <hr style="margin: 3em 0;" />
+
+            <h3>
+                <?php esc_html_e( 'Available features', 'affiliate-coupons' ); ?>
+            </h3>
+            <ul style="margin-left: 1em">
+                <li><a href="#show_all"><?php esc_html_e( 'Show all coupons', 'affiliate-coupons' ); ?></a></li>
+                <li><a href="#show_single"><?php esc_html_e( 'Show single coupons', 'affiliate-coupons' ); ?></a></li>
+                <li><a href="#filter"><?php esc_html_e( 'Filter coupons', 'affiliate-coupons' ); ?></a></li>
+                <li><a href="#sorting"><?php esc_html_e( 'Sorting coupons', 'affiliate-coupons' ); ?></a></li>
+                <li><a href="#search_filters"><?php esc_html_e( 'Frontend Search & Frontend Filter', 'affiliate-coupons' ); ?></a></li>
+                <li><a href="#pagination"><?php esc_html_e( 'Frontend Pagination', 'affiliate-coupons' ); ?></a></li>
+                <li><a href="#show_hide_invalid"><?php esc_html_e( 'Show/hide invalid coupons', 'affiliate-coupons' ); ?></a></li>
+                <li><a href="#show_hide_expired"><?php esc_html_e( 'Show/hide expired coupons', 'affiliate-coupons' ); ?></a></li>
+                <li><a href="#templates"><?php esc_html_e( 'Templates', 'affiliate-coupons' ); ?></a></li>
+
+                <?php do_action( 'affcoups_settings_section_quickstart_available_features' ); ?>
+
+            </ul>
+
+            <hr style="margin: 3em 0;" />
+
+            <h3>
+                <?php esc_html_e( 'Features', 'affiliate-coupons' ); ?>
+            </h3>
+
+            <p id="show_all" style="margin-top: 0; padding-top: 2.4em">
                 <strong><?php esc_html_e( 'Show all coupons', 'affiliate-coupons' ); ?></strong>
             </p>
             <p>
                 <code>[affcoups]</code> <?php esc_html_e( 'or', 'affiliate-coupons' ); ?> <code>[affcoups max="10"]</code>
             </p>
 
-            <p>
+            <p id="show_single" style="padding-top: 2.4em">
                 <strong><?php esc_html_e( 'Show single coupons', 'affiliate-coupons' ); ?></strong>
             </p>
             <p>
@@ -319,7 +345,7 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
                     id="123,456,789"]</code>
             </p>
 
-            <p>
+            <p id="filter" style="padding-top: 2.4em">
                 <strong><?php esc_html_e( 'Filter coupons', 'affiliate-coupons' ); ?></strong><br/>
                 <?php esc_html_e( 'By passing the id or slug (only if specified) you can filter the results individually.', 'affiliate-coupons' ); ?>
             </p>
@@ -343,7 +369,7 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
                 <small><?php esc_html_e( 'All filter options above can be combined inside the same shortcode.', 'affiliate-coupons' ); ?></small>
             </p>
 
-            <p>
+            <p id="sorting" style="padding-top: 2.4em">
                 <strong><?php esc_html_e( 'Sorting coupons', 'affiliate-coupons' ); ?></strong>
             </p>
             <ul>
@@ -358,7 +384,52 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
                 </li>
             </ul>
 
+            <p id="search_filters" style="padding-top: 2.4em">
+                <strong><?php esc_html_e( 'Frontend Search & Frontend Filter', 'affiliate-coupons' ); ?></strong>
+            </p>
             <p>
+                <?php esc_html_e( 'You can easily add the frontend search bar and search filters on a shortcode basis as follows:', 'affiliate-coupons' ); ?>
+            </p>
+            <p>
+                <code>[affcoups search_filters="true"]</code> <?php esc_html_e( 'or', 'affiliate-coupons' ); ?>
+                <code>[affcoups search_filters="false"]</code>
+            </p>
+            <p>
+                <small><?php esc_html_e( 'The shortcode ”search_filters” attribute has higher priority than “Coupon Search Filters” checkboxes at the ”General” settings tab.', 'affiliate-coupons' ); ?></small>
+            </p>
+            <p>
+                <?php esc_html_e( 'You can also set global settings at the ”General” settings tab.', 'affiliate-coupons' ); ?>
+            </p>
+
+            <p id="pagination" style="padding-top: 2.4em">
+                <strong><?php esc_html_e( 'Frontend Pagination', 'affiliate-coupons' ); ?></strong>
+            </p>
+            <p>
+                <?php esc_html_e( 'You can easily allow or forbid pagination on a shortcode basis as follows:', 'affiliate-coupons' ); ?>
+            </p>
+            <p>
+                <code>[affcoups pagination="true"]</code> <?php esc_html_e( 'or', 'affiliate-coupons' ); ?>
+                <code>[affcoups pagination="false"]</code>
+            </p>
+            <p>
+                <small><?php esc_html_e( 'The shortcode ”pagination” attribute has higher priority than “Activate coupons pagination” checkbox at the ”General” settings tab.', 'affiliate-coupons' ); ?></small>
+            </p>
+
+            <p>
+                <?php esc_html_e( 'You can easily set count of coupons per page on a shortcode basis as follows:', 'affiliate-coupons' ); ?>
+            </p>
+            <p>
+                <code>[affcoups pagination_per_page="5"]</code>
+            </p>
+            <p>
+                <small><?php esc_html_e( 'The shortcode ”pagination_per_page” attribute has higher priority than “Coupons per page” input field at the ”General” settings tab.', 'affiliate-coupons' ); ?></small>
+            </p>
+
+            <p>
+                <?php esc_html_e( 'You can also set global settings at the ”General” settings tab.', 'affiliate-coupons' ); ?>
+            </p>
+
+            <p id="show_hide_invalid" style="padding-top: 2.4em">
                 <strong><?php esc_html_e( 'Show/hide invalid coupons', 'affiliate-coupons' ); ?></strong><br/>
                 <?php esc_html_e( 'Contrary to the settings below you can show/hide coupons which are not valid yet for each shortcode individually.', 'affiliate-coupons' ); ?>
             </p>
@@ -366,7 +437,8 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
                 <code>[affcoups hide_invalid="true"]</code> <?php esc_html_e( 'vs.', 'affiliate-coupons' ); ?>
                 <code>[affcoups hide_invalid="false"]</code>
             </p>
-            <p>
+
+            <p id="show_hide_expired" style="padding-top: 2.4em">
                 <strong><?php esc_html_e( 'Show/hide expired coupons', 'affiliate-coupons' ); ?></strong><br/>
                 <?php esc_html_e( 'Contrary to the settings below you can show only the expired coupons or only the active ones for each shortcode individually.', 'affiliate-coupons' ); ?>
             </p>
@@ -375,7 +447,7 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
                 <code>[affcoups expired="false"]</code>
             </p>
 
-            <p>
+            <p id="templates" style="padding-top: 2.4em">
                 <strong><?php esc_html_e( 'Templates', 'affiliate-coupons' ); ?></strong><br/>
                 <?php esc_html_e( 'You can easily select a template on a shortcode basis as follows:', 'affiliate-coupons' ); ?>
             </p>
@@ -397,6 +469,8 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
             </p>
 
             <?php do_action( 'affcoups_settings_section_quickstart_render' ); ?>
+
+            <hr style="margin: 3em 0;" />
 
             <p><?php
                 printf( wp_kses( __( 'Please take a look into the <a href="%s" target="_blank">documentation</a> for more options.', 'affiliate-coupons' ), array(
@@ -947,6 +1021,8 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
                                                 <ul>
                                                     <li><span class="dashicons dashicons-star-filled"></span> <strong><?php _e('Click to reveal discount codes', 'affiliate-coupons'); ?></strong></li>
                                                     <li><span class="dashicons dashicons-star-filled"></span> <strong><?php _e('View, copy & click statistics', 'affiliate-coupons'); ?></strong></li>
+                                                    <li><span class="dashicons dashicons-star-filled"></span> <strong><?php _e('Powerful & comprehensive search & filter function', 'affiliate-coupons'); ?></strong></li>
+                                                    <li><span class="dashicons dashicons-star-filled"></span> <strong><?php _e('Comfortable pagination', 'affiliate-coupons'); ?></strong></li>
                                                     <li><span class="dashicons dashicons-star-filled"></span> <strong><?php _e('Choose from different styles', 'affiliate-coupons'); ?></strong></li>
                                                     <li><span class="dashicons dashicons-star-filled"></span> <strong><?php _e('Additional templates', 'affiliate-coupons'); ?></strong></li>
                                                     <li><span class="dashicons dashicons-star-filled"></span> <strong><?php _e('Feature & highlight single coupons', 'affiliate-coupons'); ?></strong></li>
