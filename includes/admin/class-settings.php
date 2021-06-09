@@ -309,7 +309,7 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
             <h3>
                 <?php esc_html_e( 'Available features', 'affiliate-coupons' ); ?>
             </h3>
-            <ul style="margin-left: 1em">
+            <ul style="margin-left: 1em; list-style: disc">
                 <li><a href="#show_all"><?php esc_html_e( 'Show all coupons', 'affiliate-coupons' ); ?></a></li>
                 <li><a href="#show_single"><?php esc_html_e( 'Show single coupons', 'affiliate-coupons' ); ?></a></li>
                 <li><a href="#filter"><?php esc_html_e( 'Filter coupons', 'affiliate-coupons' ); ?></a></li>
@@ -640,6 +640,7 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
             <p class="desc">
                 <?php esc_html_e( 'The default template which will be used for displaying coupons (widgets excepted).', 'affiliate-coupons' ); ?>
             </p>
+            <?php affcoups_the_pro_feature_note( __( 'More templates', 'affiliate-coupons' ), false ); ?>
 
             <!-- Grid -->
             <h4><?php esc_html_e( 'Grid size', 'affiliate-coupons' ); ?></h4>
