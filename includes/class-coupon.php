@@ -196,7 +196,7 @@ if ( ! class_exists( 'Affcoups_Coupon' ) ) {
             $coupon_title = affcoups_cleanup_html_attribute( $coupon_title );
 
             $image_args = array(
-                'src' => ( ! empty ( $image['url'] ) ) ? $image['url'] : AFFCOUPS_PLUGIN_URL . '/public/img/placeholder-thumb.png',
+                'src' => ( ! empty ( $image['url'] ) ) ? $image['url'] : AFFCOUPS_PLUGIN_URL . 'assets/img/placeholder-thumb.png',
                 'alt' => ( ! empty ( $image['alt'] ) ) ? $image['alt'] : $this->get_title(),
                 'url' => ( ! empty( $coupon_url ) ) ? $coupon_url : '',
                 'title' => ( ! empty( $coupon_title ) ) ? $coupon_title : '',
