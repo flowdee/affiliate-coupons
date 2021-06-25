@@ -65,13 +65,22 @@ function affcoups_get_coupons( $args = array(), $return_posts = false ) {
     // Parse args
     $args = wp_parse_args( $args, $defaults );
 
+    $relation = 'AND';
+
     // Prepare additional queries
     $meta_queries = array(
-        'relation' => 'AND'
+        'relation' => $relation
     );
 
+    if ( affcoups_is_pro_version() ) {
+
+        if ( $args['search_filters'] ) {
+            $relation = 'OR';
+        }
+    }
+
     $tax_queries = array(
-        'relation' => 'AND'
+        'relation' => $relation
     );
 
     $max = ( isset( $args['affcoups_max'] ) && is_numeric( $args['affcoups_max'] ) ) ? $args['affcoups_max'] : 0;
@@ -332,7 +341,7 @@ function affcoups_get_coupons( $args = array(), $return_posts = false ) {
     if ( $return_posts )
         return $coupon_posts;
 
-    //affcoups_debug_log( '$args[\'posts_per_page\']: ' . $args['posts_per_page'] );
+    //affcoups_debug_log( '$args['posts_per_page']: ' . $args['posts_per_page'] );
     //affcoups_debug_log( 'sizeof( $coupon_posts ): ' . sizeof( $coupon_posts ) );
 
     if ( sizeof( $coupon_posts ) > 0 ) {
@@ -414,7 +423,6 @@ function affcoups_get_category_taxonomy() {
         foreach ( $terms as $term ) {
             $options[ $term->term_id ] = $term->name;
         }
-
     }
 
     return $options;
@@ -438,7 +446,6 @@ function affcoups_get_types_taxonomy() {
         foreach ( $types as $type ) {
             $options[ $type->term_id ] = $type->name;
         }
-
     }
 
     return $options;

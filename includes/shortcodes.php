@@ -31,7 +31,8 @@ add_filter( 'affcoups_the_content', 'affcoups_maybe_cleanup_shortcode_output' );
  */
 function affcoups_add_shortcode( $atts, $content ) {
 
-    //affcoups_debug_log( __FUNCTION__ );
+    //affcoups_debug_log( '' );
+    //affcoups_debug_log( '------- ADD SHORTCODE START -------' );
 
     //affcoups_debug_log( '$atts:' );
     //affcoups_debug_log( $atts );
@@ -124,13 +125,12 @@ function affcoups_add_shortcode( $atts, $content ) {
             $args['affcoups_coupon_expired'] = 0;
         }
 
-    // Fallback for deprecated 'hide_expired' shortcode attr
     } elseif ( isset( $hide_expired ) && 'true' === $hide_expired ) {
+        // Fallback for deprecated 'hide_expired' shortcode attr
         $args['affcoups_coupon_expired'] = 0;
 
-    // 1. Fallback for deprecated $args['affcoups_coupon_hide_expired']
-    // 2. 'hide_expired_coupons' setting is enhanced via radio buttons now: 'Show all coupons' / 'Show activate coupons only'
     } elseif ( isset( $options['hide_expired_coupons'] ) && '1' === $options['hide_expired_coupons'] ) {
+        // Fallback for deprecated 'affcoups_coupon_hide_expired' setting
         $args['affcoups_coupon_expired'] = 0;
     }
 
@@ -145,85 +145,115 @@ function affcoups_add_shortcode( $atts, $content ) {
 
 	ob_start();
 
-	if ( $coupons ) {
+    if ( $coupons ) {
 
         //-- Apply filters
         $coupons = apply_filters( 'affcoups_coupons', $coupons, $args );
 
-		//echo 'Coupons found: ' . $coupons->post_count . '<br>';
+        //echo 'Coupons found: ' . $coupons->post_count . '<br>';
 
-		if ( affcoups_is_amp() ) {
-			$template = 'amp';
+        if ( affcoups_is_amp() ) {
+            $template = 'amp';
             $style = 'standard';
-		} else {
 
-			// Defaults
-			$template_default  = ( ! empty( $options['template'] ) ) ? esc_html( $options['template'] ) : 'standard';
-			$grid_size_default = ( ! empty( $options['grid_size'] ) && is_numeric( $options['grid_size'] ) ) ? esc_html( $options['grid_size'] ) : 2;
+        } else {
+            // Defaults
+            $template_default  = ( ! empty( $options['template'] ) ) ? esc_html( $options['template'] ) : 'standard';
+            $grid_size_default = ( ! empty( $options['grid_size'] ) && is_numeric( $options['grid_size'] ) ) ? esc_html( $options['grid_size'] ) : 2;
             $style_default  = ( ! empty( $options['style'] ) ) ? esc_html( $options['style'] ) : 'standard';
 
-			// Collect template settings
-			$template = ( ! empty( $template ) ) ? esc_html( $template ) : $template_default;
-			$grid_size = $grid_size_default;
+            // Collect template settings
+            $template = ( ! empty( $template ) ) ? esc_html( $template ) : $template_default;
+            $grid_size = $grid_size_default;
             $style = ( ! empty( $style ) ) ? esc_html( $style ) : $style_default;
 
-			// Grid Layout?
-			if ( ! empty( $grid ) && is_numeric( $grid ) ) {
-				$template  = 'grid';
-				$grid_size = $grid;
-			}
+            // Grid Layout?
+            if ( ! empty( $grid ) && is_numeric( $grid ) ) {
+                $template  = 'grid';
+                $grid_size = $grid;
+            }
 
-			//echo '$template_default: ' .  $template_default . ' - $template: ' . $template . ' - $grid_size_default: ' . $grid_size_default . ' - $grid_size: ' . $grid_size . '<br>';
-		}
+            //echo '$template_default: ' .  $template_default . ' - $template: ' . $template . ' - $grid_size_default: ' . $grid_size_default . ' - $grid_size: ' . $grid_size . '<br>';
+        }
 
-		// Store template variables
-		global $affcoups_template_args;
+        // Store template variables
+        global $affcoups_template_args;
 
-		$affcoups_template_args['template'] = $template;
-		$affcoups_template_args['grid_size'] = ( ! empty( $grid_size ) ) ? $grid_size : 0;
+        $affcoups_template_args['template'] = $template;
+        $affcoups_template_args['grid_size'] = ( ! empty( $grid_size ) ) ? $grid_size : 0;
         $affcoups_template_args['style'] = $style;
 
-		if ( isset( $atts['hide_dates'] ) && in_array( $atts['hide_dates'], array( 'true', 'false' ) ) )
+        if ( isset( $atts['hide_dates'] ) && in_array( $atts['hide_dates'], array( 'true', 'false' ) ) ) {
             $affcoups_template_args['hide_dates'] = $atts['hide_dates'];
+        }
 
-        if ( isset( $atts['float'] ) && in_array( $atts['float'], array( 'left', 'right' ) ) )
+        if ( isset( $atts['float'] ) && in_array( $atts['float'], array( 'left', 'right' ) ) ) {
             $affcoups_template_args['float'] = $atts['float'];
+        }
 
-        if ( isset( $atts['style'] ) )
+        if ( isset( $atts['style'] ) ) {
             $affcoups_template_args['style'] = $atts['style'];
+        }
 
-        if ( isset( $atts['code'] ) )
+        if ( isset( $atts['code'] ) ) {
             $affcoups_template_args['code'] = $atts['code'];
+        }
 
-		//affcoups_debug( $affcoups_template_args, 'shortcode > $affcoups_template_args' );
+        //affcoups_debug( $affcoups_template_args, 'shortcode > $affcoups_template_args' );
 
-		//echo 'Grid: ' . $grid . '<br>';
-		//echo 'Template: ' . $template . '<br>';
+        //echo 'Grid: ' . $grid . '<br>';
+        //echo 'Template: ' . $template . '<br>';
+
+        if ( ! affcoups_is_amp() ) {
+            echo '<div class="affcoups" data-template="' . $template . '">';
+        }
 
         // Get template file
         $file = affcoups_get_template_file( $template, 'coupons' );
 
         if ( file_exists( $file ) ) {
 
-            $args['template'] = $template;
-            $args['is_widget'] = $is_widget;
+            if ( ! empty( $atts['search_filters'] ) || ! empty( $atts['pagination'] ) ) {
+                $args = array_merge( $affcoups_template_args, $args );
 
-            // Grid
-            if ( 'grid' == $template ) {
-                $args['grid_size'] = $affcoups_template_args['grid_size'];
+            } else {
+                $args['template'] = $template;
+                $args['is_widget'] = $is_widget;
+
+                // Grid
+                if ( 'grid' == $template ) {
+                    $args['grid_size'] = $affcoups_template_args['grid_size'];
+                }
             }
 
-            $coupons = apply_filters( 'affcoups_coupons_before', $coupons, $args );
+            if ( affcoups_is_pro_version() ) {
+
+                if ( $args['search_filters'] ) {
+                    $filtered = apply_filters( 'affcoups_coupons_search_filters', $coupons, $args );
+                    extract( $filtered );
+                }
+
+                if ( $args['pagination'] ) {
+                    $filtered = apply_filters( 'affcoups_coupons_pagination', $coupons, $args );
+                    extract( $filtered );
+                }
+            }
 
             include $file;
 
         } else {
-            '<p>' . esc_html_e( 'Template not found.', 'affiliate-coupons' ) . '</p>';
+            esc_html_e( 'Template not found.', 'affiliate-coupons' );
         }
 
-	} else {
-		esc_html_e( 'No coupons found.', 'affiliate-coupons' );
-	}
+        if ( ! affcoups_is_amp() ) {
+            echo '</div><!-- /.affcoups -->';
+        }
+
+    } else {
+        echo '<div class="affcoups">';
+        esc_html_e( 'No coupons found.', 'affiliate-coupons' );
+        echo '</div><!-- /.affcoups -->';
+    }
 
 	$output = ob_get_clean();
 
@@ -232,7 +262,10 @@ function affcoups_add_shortcode( $atts, $content ) {
 	// Remove unwanted line breaks from output
     $output = preg_replace( '/^\s+|\n|\r|\s+$/m', '', $output );
 
-	// Return output
+    //affcoups_debug_log( '' );
+    //affcoups_debug_log( '------- ADD SHORTCODE END -------' );
+
+    // Return output
 	return $output;
 }
 add_shortcode( 'affcoups', 'affcoups_add_shortcode' );

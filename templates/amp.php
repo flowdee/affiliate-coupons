@@ -11,19 +11,19 @@
 if( !defined( 'ABSPATH' ) ) exit;
 
 // Check if coupons were found
-if ( ! isset( $coupons ) )
+if ( ! isset( $coupons ) ) {
     return;
+}
 
 if ( ! isset( $args ) ) {
     $args = array();
-}
-?>
+} ?>
 
 <div class="affcoups-amp">
 
     <?php if ( sizeof( $coupons ) > 0 ) {
 
-        foreach( $coupons as $coupon ) : ?>
+        foreach( $coupons as $coupon ): ?>
 
             <div class="<?php $coupon->the_classes('affcoups-coupon' ); ?>"<?php $coupon->the_container(); ?>>
 
@@ -51,4 +51,5 @@ if ( ! isset( $args ) ) {
     } else {
         esc_html_e( 'No coupons found.', 'affiliate-coupons-pro' );
     } ?>
+
 </div>

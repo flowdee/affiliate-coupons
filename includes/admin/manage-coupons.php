@@ -21,7 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 function affcoups_coupon_extend_columns( $defaults ) {
 
     /**
-     * @Todo: maybe insert 'Vendor' between 'Categories' and 'Date' columns ?
      *  @see affcoups_array_insert_after()
      */
     $defaults['affcoups_coupon_vendor'] = __( 'Vendor', 'affiliate-coupons' );
