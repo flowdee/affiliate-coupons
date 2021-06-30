@@ -125,12 +125,13 @@ function affcoups_add_shortcode( $atts, $content ) {
             $args['affcoups_coupon_expired'] = 0;
         }
 
+    // Fallback for deprecated 'hide_expired' shortcode attr
     } elseif ( isset( $hide_expired ) && 'true' === $hide_expired ) {
-        // Fallback for deprecated 'hide_expired' shortcode attr
         $args['affcoups_coupon_expired'] = 0;
 
+    // 1. Fallback for deprecated $args['affcoups_coupon_hide_expired']
+    // 2. 'hide_expired_coupons' setting is enhanced via radio buttons now: 'Show all coupons' / 'Show activate coupons only'
     } elseif ( isset( $options['hide_expired_coupons'] ) && '1' === $options['hide_expired_coupons'] ) {
-        // Fallback for deprecated 'affcoups_coupon_hide_expired' setting
         $args['affcoups_coupon_expired'] = 0;
     }
 

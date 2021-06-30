@@ -1,6 +1,6 @@
 <?php
 /**
- * Metaboxes
+ * Vendor Meta Boxes
  *
  * @package     AffiliateCoupons\Vendors\Metaboxes
  * @since       1.0.0
@@ -58,6 +58,3 @@ function affcoups_register_vendor_meta_boxes( $meta_boxes ) {
 	return $meta_boxes;
 }
 add_filter( 'rwmb_meta_boxes', 'affcoups_register_vendor_meta_boxes' );
-
-
-

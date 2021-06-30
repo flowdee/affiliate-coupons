@@ -572,6 +572,14 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
                 <input type="checkbox" id="affcoups_hide_invalid_coupons" name="affcoups_settings[hide_invalid_coupons]" value="1" <?php echo( $hide_invalid_coupons == 1 ? 'checked' : '' ); ?> />
                 <label for="affcoups_hide_invalid_coupons"><?php esc_html_e( 'Hide coupons which are not yet valid', 'affiliate-coupons' ); ?></label>
             </p>
+            <p style="margin-top: 2em">
+                <input type="radio" id="affcoups_show_expired_coupons" name="affcoups_settings[hide_expired_coupons]" value="0" <?php checked('0', $hide_expired_coupons ); ?> />
+                <label for="affcoups_show_expired_coupons"><?php esc_html_e( 'Show all coupons', 'affiliate-coupons' ); ?></label>
+            </p>
+            <p>
+                <input type="radio" id="affcoups_hide_expired_coupons" name="affcoups_settings[hide_expired_coupons]" value="1" <?php checked('1', $hide_expired_coupons ); ?> />
+                <label for="affcoups_hide_expired_coupons"><?php esc_html_e( 'Show activate coupons only', 'affiliate-coupons' ); ?></label>
+            </p>
             <?php
 		}
 

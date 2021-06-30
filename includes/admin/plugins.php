@@ -1,6 +1,6 @@
 <?php
 /**
- * Settings
+ * Plugin row links
  *
  * @package     AffiliateCoupons\Admin\Plugins
  * @since       1.0.0
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Plugins row action links
+ * Plugin row action links
  *
  * @param array $links already defined action links
  * @param string $file plugin file path and name being processed

@@ -1,6 +1,6 @@
 <?php
 /**
- * Metaboxes
+ * Coupon Meta Boxes
  *
  * @package     AffiliateCoupons\Coupons\Metaboxes
  * @since       1.0.0
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Register coupon meta boxes
+ * Register Coupon Meta Boxes
  *
  * @param $meta_boxes
  * @return array|mixed
