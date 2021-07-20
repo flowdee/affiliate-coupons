@@ -5,7 +5,7 @@ Tags: affiliate coupons, coupon plugin, coupon, wp coupons, coupon reveal
 Requires at least: 3.0.1
 Requires PHP: 5.6.0
 Tested up to: 5.7.2
-Stable tag: 1.6.6
+Stable tag: 1.6.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -107,6 +107,12 @@ Affiliate Coupons is a fully GDPR compatible WordPress coupon plugin. We don’t
 2. Settings
 
 == Changelog ==
+
+= Version 1.6.7.1 (16th July 2021) =
+* Updated stable tag
+
+= Version 1.6.7 (16th July 2021) =
+* Tweak: Adjusted CSS max-width for .affcoups container
 
 = Version 1.6.6 (14th July 2021) =
 * Tweak: Optimized affcoups container CSS
