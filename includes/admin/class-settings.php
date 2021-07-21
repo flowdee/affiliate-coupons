@@ -319,6 +319,7 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
                 <li><a href="#show_hide_invalid"><?php esc_html_e( 'Show/hide invalid coupons', 'affiliate-coupons' ); ?></a></li>
                 <li><a href="#show_hide_expired"><?php esc_html_e( 'Show/hide expired coupons', 'affiliate-coupons' ); ?></a></li>
                 <li><a href="#templates"><?php esc_html_e( 'Templates', 'affiliate-coupons' ); ?></a></li>
+                <li><a href="#styles"><?php esc_html_e( 'Styles', 'affiliate-coupons' ); ?></a></li>
 
                 <?php do_action( 'affcoups_settings_section_quickstart_available_features' ); ?>
 
@@ -466,6 +467,18 @@ if ( ! class_exists( 'Affcoups_Settings' ) ) {
             </p>
             <p>
                 <?php esc_html_e( 'When passing the grid size parameter, the plugin will automatically choose the grid template.', 'affiliate-coupons' ); ?>
+            </p>
+
+            <p id="styles" style="padding-top: 2.4em">
+                <strong><?php esc_html_e( 'Styles', 'affiliate-coupons' ); ?></strong><br/>
+                <?php esc_html_e( 'You can easily select a style on a shortcode basis as follows:', 'affiliate-coupons' ); ?>
+            </p>
+            <p>
+                <code>[affcoups style="standard"]</code>
+            </p>
+            <p>
+                <?php esc_html_e( 'The following styles are available right now:', 'affiliate-coupons' ); ?>
+                <code>standard</code>, <code>light</code> & <code>dark</code>
             </p>
 
             <?php do_action( 'affcoups_settings_section_quickstart_render' ); ?>
